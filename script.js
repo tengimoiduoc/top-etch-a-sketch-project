@@ -1,37 +1,65 @@
 "use strict";
-const body = document.querySelector("body");
-const container = document.querySelector(".container");
 
-for (let i = 0; i < 256; i++) {
-  const div = document.createElement("div");
+// Select elements from the DOM
+const bodyElement = document.querySelector("body");
+const gridContainer = document.querySelector(".container");
+const gridItems = document.querySelectorAll(".grid-card");
 
-  div.classList.add("grid-card");
+function createGrid(numberOfSquaresPerRow) {
+  gridContainer.innerHTML = "";
 
-  div.addEventListener("mouseover", () => {
-    div.style.backgroundColor = "#000";
-  });
+  for (
+    let squareIndex = 0;
+    squareIndex < numberOfSquaresPerRow ** 2;
+    squareIndex++
+  ) {
+    const newGridItem = document.createElement("div");
 
-  container.appendChild(div);
+    newGridItem.classList.add("grid-card");
+
+    newGridItem.addEventListener("mouseover", () => {
+      newGridItem.style.backgroundColor = "#000";
+    });
+
+    newGridItem.style.flex = `0 1 calc(100%/${numberOfSquaresPerRow}`;
+
+    gridContainer.appendChild(newGridItem);
+  }
 }
 
-// Add button that gets user's number of square
-const btnContainer = document.createElement("div");
-btnContainer.classList.add("btn-container");
+createGrid(16);
 
-body.insertBefore(btnContainer, container);
-const containerBtn = document.querySelector(".btn-container");
+// Create a container for buttons
+const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("button-container");
 
-const btnGetSquare = document.createElement("btn");
-btnGetSquare.classList.add("btn", "btn-get-square");
-btnGetSquare.textContent = "Square";
+bodyElement.insertBefore(buttonContainer, gridContainer);
+const buttonArea = document.querySelector(".button-container");
 
-const btnClear = document.createElement("btn");
-btnClear.classList.add("btn", "btn-clear");
-btnClear.textContent = "Clear";
+// Create buttons for getting user input and clearing the grid
+const getSquaresButton = document.createElement("button");
+getSquaresButton.classList.add("button", "get-squares-button");
+getSquaresButton.textContent = "Set Grid Size";
 
-containerBtn.appendChild(btnGetSquare);
-containerBtn.appendChild(btnClear);
-// 1. change the number of square === user input
-// when button is clicked
-//2. remove existing grid
-//3. new grid have the same total space
+const clearGridButton = document.createElement("button");
+clearGridButton.classList.add("button", "clear-grid-button");
+clearGridButton.textContent = "Clear Grid";
+
+buttonArea.appendChild(getSquaresButton);
+buttonArea.appendChild(clearGridButton);
+
+const getSquaresButtonElement = document.querySelector(".get-squares-button");
+
+getSquaresButtonElement.addEventListener("click", () => {
+  let desiredGridSize = Number(
+    prompt("Enter the desired number of squares (Max: 100)")
+  );
+
+  if (desiredGridSize >= 100) {
+    desiredGridSize = Number(
+      prompt("Invalid number! Please enter a value less than 100.")
+    );
+  }
+
+  createGrid(desiredGridSize); // Recreate the grid with the new size
+});

@@ -21,7 +21,7 @@
   transition: background-color 0.3s;
 }
 
-.btn-container {
+.button-container {
   height: 56px;
   display: flex;
   padding: 0 24px;
@@ -29,7 +29,7 @@
   background-color: antiquewhite;
 }
 
-.btn {
+.button {
   cursor: pointer;
   color: #fff;
   background-color: blueviolet;
