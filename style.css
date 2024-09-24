@@ -12,6 +12,13 @@
 }
 
 .grid-card {
-  background-color: antiquewhite;
+  background-color: #faebd7;
   flex: 0 1 calc(100% / 16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-card:hover {
+  background-color: #e0d2bf;
 }
