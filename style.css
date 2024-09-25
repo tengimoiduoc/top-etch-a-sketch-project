@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+body {
+  overflow: hidden;
+}
+
 .container {
   width: 100vw;
   height: 90vh;
@@ -13,8 +17,6 @@
 
 .grid-card {
   cursor: pointer;
-  background-color: rgb(103, 238, 242);
-  flex: 0 1 calc(100% / 16);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,19 +24,27 @@
 }
 
 .button-container {
-  height: 56px;
+  height: 54px;
   display: flex;
-  padding: 0 24px;
+  padding: 0 22px;
   justify-content: space-between;
-  background-color: antiquewhite;
+  background-color: blanchedalmond;
 }
 
 .button {
   cursor: pointer;
   color: #fff;
-  background-color: blueviolet;
+  background-color: brown;
   font-size: 20px;
   border: none;
-  padding: 14px 28px;
+  padding: 12px 24px;
   border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #c23434;
+}
+
+.button:active {
+  background-color: #cf1313;
 }
