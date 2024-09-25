@@ -21,7 +21,9 @@ function createGrid(numberOfSquaresPerRow) {
     newGridItem.style.flex = `0 1 calc(100%/${numberOfSquaresPerRow}`;
 
     newGridItem.addEventListener("mouseover", () => {
-      newGridItem.style.backgroundColor = "#000";
+      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
+      newGridItem.style.backgroundColor = "#" + randomColor;
     });
 
     gridContainer.appendChild(newGridItem);
@@ -53,8 +55,9 @@ const getSquaresButtonElement = document.querySelector(".get-squares-button");
 const clearButtonElement = document.querySelector(".clear-grid-button");
 
 // Get desired grid size from user
+let desiredGridSize;
 getSquaresButtonElement.addEventListener("click", () => {
-  let desiredGridSize = Number(
+  desiredGridSize = Number(
     prompt("Enter the desired number of squares (Max: 100)")
   );
 
